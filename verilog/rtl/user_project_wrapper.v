@@ -78,45 +78,46 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
-/*--------------------------------------*/
-/* User project is instantiated  here   */
-/*--------------------------------------*/
+    wire rst,execute,clk;
+    wire [2:0]sel_in;
+    wire[7:0]input_val;
+    wire [1:0]sel_out;
+    wire [16:0]result;
+    //wire [16:0]io_oeb;
 
-user_proj_example mprj (
+
+    //outputs
+    assign io_out[21:5] = result ;
+    //assign io_oeb[21:5]= 17'b0000_0000_0000_0000_0;
+    
+    //IRQ
+    //assign irq=3'b000;
+   
+    //inputs
+    assign io_in[35:28]=input_val ;
+    assign io_in[27:25]=sel_in;
+    assign io_in[37:36]=sel_out;
+    assign io_in[22]=execute;
+    assign io_in[24]=clk;
+    assign io_in[23]=rst;
+    
+   
+   
+
+matrix_multiply mprj(
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
-
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
+	.sel_in(sel_in),
+	.input_val(input_val),
+	.out(result),
+	.sel_out(sel_out),
+	.clk(clk),
+	.reset(rst),
+	.execute(execute)
 );
+   
 
 endmodule	// user_project_wrapper
 
