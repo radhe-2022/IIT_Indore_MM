@@ -1,14 +1,14 @@
 {
     "DESIGN_NAME": "user_project_wrapper",
     "VERILOG_FILES": ["dir::../../verilog/rtl/defines.v", "dir::../../verilog/rtl/user_project_wrapper.v"],
-    "CLOCK_PERIOD": 10,
-    "CLOCK_PORT": "user_clock2",
+    "CLOCK_PERIOD": 30,
+    "CLOCK_PORT": "clk",
     "CLOCK_NET": "mprj.clk",
     "FP_PDN_MACRO_HOOKS": "mprj vccd1 vssd1 vccd1 vssd1",
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
-    "VERILOG_FILES_BLACKBOX": ["dir::../../verilog/rtl/defines.v", "dir::../../verilog/rtl/user_proj_example.v"],
-    "EXTRA_LEFS": "dir::../../lef/user_proj_example.lef",
-    "EXTRA_GDS_FILES": "dir::../../gds/user_proj_example.gds",
+    "VERILOG_FILES_BLACKBOX": ["dir::../../verilog/rtl/defines.v", "dir::../../verilog/rtl/matrix_multiply.v"],
+    "EXTRA_LEFS": "dir::../../lef/matrix_multiply.lef",
+    "EXTRA_GDS_FILES": "dir::../../gds/matrix_multiply.gds",
     "FP_PDN_CHECK_NODES": 0,
     "SYNTH_ELABORATE_ONLY": 1,
     "PL_RANDOM_GLB_PLACEMENT": 1,
@@ -53,7 +53,7 @@
         "DIE_AREA": "0 0 2920 3520",
         "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
         "scl::sky130_fd_sc_hd": {
-            "CLOCK_PERIOD": 10
+            "CLOCK_PERIOD": 30
         },
         "scl::sky130_fd_sc_hdll": {
             "CLOCK_PERIOD": 10
